@@ -1,7 +1,7 @@
 #ifndef _B5_MATRIX_HPP_
 #define _B5_MATRIX_HPP_
 
-#include <cstddef>
+#include <stddef.h> // for size_t
 
 /** a simple dense matrix class for creating some token benchmarks */
 template< class T >
@@ -23,7 +23,7 @@ struct matrix
     {
         if(&other == this) return;
         resize(other.nrows, other.ncols);
-        memcpy(vals, other.vals, num_bytes());
+        memcpy(vals, other.vals, size_bytes());
         return *this;
     }
     matrix& operator= (matrix && other)
@@ -39,7 +39,7 @@ struct matrix
         other.alloc = {};
     }
 
-    size_t num_bytes() const { return nrows * ncols * sizeof(T); }
+    size_t size_bytes() const { return nrows * ncols * sizeof(T); }
 
     void release()
     {

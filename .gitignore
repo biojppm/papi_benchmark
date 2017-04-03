@@ -1,0 +1,4 @@
+build
+install
+extern/ExternalProjectUtils.cmake
+.gdb_history
